@@ -1,4 +1,16 @@
 
+#' @param file_pheno A pheno file
+#' @param source_pop A population title
+#' @param id_name A ID for the population e.g 'animal'
+#' @param fe_cov A fixed covariate variable from the phenotype file (may not be included in data)
+#' @param fe_fct A fixed factor variable from the phenotype file (may not be included in data)
+#' @param cg_name A random variable from the phenotype file
+#' @param phenotype A response variable
+
+#' @details
+#' This function allows reading of the raw phenotype file, selecting relevant variables,
+#' and makes it available for use.
+
 #Read Phenotype
 
 read_pheno<-function(file_pheno, source_pop, id_name,fe_cov=NULL, fe_fct=NULL,cg_name,phenotype=NULL){
