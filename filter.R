@@ -1,6 +1,7 @@
 
 #' @param geno A matrix n X m output of geno.R function 
-#' @param pheno A dataframe containing number of individuals on rows and required phenotype variable output of pheno.R function
+#' @param pheno A phenotype dataframe output of filter.R function containing number 
+#' of individuals on rows and required phenotype variable(s) on columns 
 #' @param map A dataframe output of map.R function
 #' @param n_row A numeric value for setting a threshold for NA in rows
 #' @param n_col A numeric value for setting a threshold for NA in columns
