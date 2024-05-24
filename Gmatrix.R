@@ -1,4 +1,10 @@
 
+#' @param geno A matrix n X m output of filter.R function 
+#' @returns a matrix n x n for the genomic relationship matrix
+
+#' @details
+#' This function computes the genomic relationship matrix.
+
 #Set G matrix
 
 read_G_matrix <- function(g){
