@@ -2,7 +2,7 @@
 #' @param geno A matrix n X m output of geno.R function 
 #' @param pheno A phenotype dataframe output of filter.R function containing number 
 #' of individuals on rows and required phenotype variable(s) on columns 
-#' @param map A dataframe output of map.R function
+#' @param map A dataframe output of map.R function (NULL by default)
 #' @param n_row A numeric value for setting a threshold for NA in rows
 #' @param n_col A numeric value for setting a threshold for NA in columns
 #' @param n_maf A numeric value for the minor allele frequency
