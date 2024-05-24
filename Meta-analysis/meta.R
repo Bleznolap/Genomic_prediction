@@ -1,3 +1,24 @@
+
+#' @param N The size of individuals in each population 
+#' @param ... An argument that contains the genetic variance and gwa object [SNP effects and their variance]. 
+#' Note that the two objects are arranged in that order.
+#' @returns a list of the following objects:
+#' \itemize{
+#'     \item{\code{results}} {A list of objects including Z score and p-value for each population}
+#'     \item{\code{Z_Meta}} {A vector of combined z scores}
+#'     \item{\code{p_Meta}} {A vector of combined p-value}
+#'     \item{\code{beta_meta}} {A vector of combined effect size estimates}
+#'     \item{\code{SE_meta}} {A vector of combined standard error}
+#'     \item{\code{ghat}} {A vector of combined SNP effects}
+#'     \item{\code{var_ghat}} {A vector of combined SNP effects variances}
+#'     \item{\code{table}} {A table of standard error, z score, p-value, beta, and SNP effect}
+#'     \item{\code{g_var_Meta}} {A vector of combined genetic variances}
+#' }
+
+#' @details
+#' This function performs a meta-analysis
+
+
 meta_gp <- function(N, ...){
   num <- N
   objs <- list(...)
