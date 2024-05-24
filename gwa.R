@@ -1,4 +1,16 @@
 
+#' @param gb A gblup object
+#' @param g A genotype matrix n X m output of filter.R function
+#' @param scale A condition to standardize the genotype matrix (true by default)
+#' @returns an object of the class gwas: a dataframe with two columns and length equal to number of markers
+#' \itemize{ 
+#'    \item {\code{ghat}} {estimated SNP effects} 
+#'    \item{\code{varg}} {estimated SNP effect variances}
+#'}
+
+#' @details
+#' This function estimates the SNP effects and their variances
+
 #Run GWA
 run_gwa<- function(gb, g, scale=TRUE){
   if(scale == TRUE){
