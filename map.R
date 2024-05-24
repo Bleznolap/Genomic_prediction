@@ -1,4 +1,10 @@
 
+#' @param file_map A map file
+#' @details
+#' This function allows reading of the raw map file and ensures the row names
+#' are marker IDs and column names are chromosomes and their position.
+#' It outputs a summary of the map.
+
 #Read Map
 
 read_map <- function(file_map){
