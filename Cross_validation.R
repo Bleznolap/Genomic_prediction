@@ -1,5 +1,25 @@
+
+
+#' @param G A matrix n X n 
+#' @param pheno A phenotype dataframe 
+#' @param iterate A numeric object for the number of iterations (set as 5 by default)
+#' @param y_name A response variable
+#' @param fixed A fixed variable
+#' @param rand_var A random variable
+#' @param poly_name A list object for the number of polygenic scores (e.g c("poly1", "poly2", ...)) [set as NULL by default]
+#' @param seed A numeric seed object to ensure reproducibility of results (set as 1900 by default)
+#'
+#' @returns a matrix of n x 1,  where n equals the number of iterations
+#' @output a table with a single value representing the colmeans of the number of iterations
+
+
+#' @details
+#' This function computes the cross-validation for the prediction accuracy as the correlation between 
+#' the true phenotype value and predicted breeding value
+#' 
+
 #Cross Validation
-cross_validation<- function(G,pheno,iterate=5,y_name,fixed=NULL,rand_var, poly_name=NULL, pop=NULL, seed=1900){
+cross_validation<- function(G,pheno,iterate=5,y_name,fixed=NULL,rand_var, poly_name=NULL, seed=1900){
   set.seed(seed)
   d_pheno <- pheno
   obs <- nrow(d_pheno)
