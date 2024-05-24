@@ -15,7 +15,7 @@
 
 #' @details
 #' This function computes the cross-validation for the prediction accuracy as the correlation between 
-#' the true phenotype value and predicted breeding value
+#' the true phenotype value and predicted breeding value. It only works for full-rank matrices.
 #' 
 
 #Cross Validation
