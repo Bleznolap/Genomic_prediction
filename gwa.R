@@ -9,7 +9,8 @@
 #'}
 
 #' @details
-#' This function estimates the SNP effects and their variances
+#' This function estimates the SNP effects and their variances. If scale is FALSE, the standardized genotype 
+#' matrix (Z matrix) can replace the genotype matrix.
 
 #Run GWA
 run_gwa<- function(gb, g, scale=TRUE){
