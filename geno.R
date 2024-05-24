@@ -1,5 +1,10 @@
+#' @param file A marker file
+#' @details
+#' This function allows reading of the raw genotype file and converting it to 
+#' a matrix format. It outputs the first five rows and columns.
+#' It allows output number of individuals and markers
 
-#Read Genotype
+#' Read Genotype
 
 read_genotypes<-function(file){
   geno<-fread(file,header=TRUE,data.table=FALSE)
