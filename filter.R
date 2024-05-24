@@ -1,4 +1,24 @@
 
+#' @param geno A matrix n X m output of geno.R function 
+#' @param pheno A dataframe containing number of individuals on rows and required phenotype variable output of pheno.R function
+#' @param map A dataframe output of map.R function
+#' @param n_row A numeric value for setting a threshold for NA in rows
+#' @param n_col A numeric value for setting a threshold for NA in columns
+#' @param n_maf A numeric value for the minor allele frequency
+#' @param cg_name A random variable from the phenotype file
+#' @param phenotype A response variable
+#' @returns a list of the following objects:
+#' \itemize{
+#'     \item{\code{geno}} {genotype matrix}
+#'     \item{\code{pheno}} {phenotype dataframe}
+#'     \item{\code{map}} {map dataframe}
+#' }
+
+#' @details
+#' This function filters the genotype matrix for minor allele frequency,
+#' ensures the length and IDs of rownames in phenotype and genotype objects are the same,
+#' and ensure that the colnames of the genotype match with the rownames of the map object.
+
 #Filter and match genotype, phenotype, and map
 
 filter_and_match<-function(geno,pheno, map=NULL, n_row, n_col, n_maf){
