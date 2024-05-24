@@ -1,3 +1,10 @@
+
+
+#' @param file A marker file
+#' @details
+#' This function allows reading of the raw genotype file and converting it to 
+#' a matrix format. It outputs the forst five rows and columns.
+
 #Read Genotype
 read_genotypes<-function(file){
   geno<-fread(file,header=TRUE,data.table=FALSE)
@@ -13,6 +20,11 @@ read_genotypes<-function(file){
   
   return(geno)
 }
+
+#' @param file A map file
+#' @details
+#' This function allows reading of the raw genotype file and converting it to 
+#' a matrix format. It outputs the forst five rows and columns.
 
 #Read Map
 read_map <- function(file_map){
