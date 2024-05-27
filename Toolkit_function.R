@@ -200,7 +200,8 @@ cross_validation<- function(G,pheno,iterate=5,y_name,fixed=NULL,rand_var, poly_n
     A11 <- gb_cross$model$G
     A21 <- G[rownames(d_pheno)[tc], colnames(A11)]
     Uhat<- summary(gb_cross)$uhat
-    Uhat2<- A21%*%chol2inv(chol(A11))%*%Uhat
+    Uhat2<- gb_cross$sigma[["G"]]*A21%*%gb_cross$Vinv%*%gb_cross$ehat
+    #Uhat2<- A21%*%chol2inv(chol(A11))%*%Uhat
     
     y_hat_m<-0
     
