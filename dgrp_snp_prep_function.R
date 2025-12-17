@@ -196,6 +196,7 @@ return(list(pcs=GG_pcs, var=GG_var))
 
 snp_map <- function(gene_df, snp_df, chr_lst){
   Go_fd <- list()
+  Go_fd_0 <- list()
   for(j in seq_along(chr_lst)){
     chR <- gene_df %>% filter(chromosome_name==chr_lst[[j]])
     snP <- snp_df %>% filter(chr==chr_lst[[j]])
@@ -205,11 +206,13 @@ snp_map <- function(gene_df, snp_df, chr_lst){
                            snP$pos<=chR$end_position[i],]
     }
     Go_fd[[j]] <- GG_chr
+    Go_fd_0[[j]] <- base::Filter(function(x) nrow(x)>0, GG_chr)
     
   }
   tot <- lapply(Go_fd, function(x) sapply(x, function(y) y$snp))
+  tot_0 <- lapply(Go_fd_0, function(x) sapply(x, function(y) y$snp))
   #funct_snp <- unlist(c(tot[[1]], tot[[2]],tot[[3]], tot[[4]], tot[[5]]))
-  return(tot)
+  return(list(tot_chr=tot,tot_chr_0=tot_0, Go_chr=Go_fd, Go_chr_0=Go_fd_0))
 }
 
 
@@ -221,28 +224,21 @@ snp_map <- function(gene_df, snp_df, chr_lst){
 
 gene_map <- function(gene_df,snp_lst, chr_lst){
   GG_snpsCHR <- list()
+  GG_snpsCHR_0 <- list()
   for(j in seq_along(chr_lst)){
     chR <- gene_df |> 
       filter(chromosome_name==chr_lst[[j]])
     snP <- snp_lst |> 
       filter(chr==chr_lst[[j]])
     GG_chr2 <- list()
-    for(i in 1:nrow(chR)){
-      GG_chr2[[i]] <- snP[snP$pos>=chR$start_position[i] & snP$pos<=chR$end_position[i],]
+    for(i in 1:nrow(snP)){
+      GG_chr2[[i]] <- chR[chR$start_position<=snP$pos[i] & chR$end_position>=snP$pos[i],]
     }
     GG_snpsCHR[[j]] <- GG_chr2
   }
   n_gene <- lapply(GG_snpsCHR, function(x) sapply(x, nrow)) 
-  #n_gene_All <- c(n_gene[[1]], n_gene[[2]], n_gene[[3]], n_gene[[4]], n_gene[[5]], 
-                  #n_gene[[6]]) 
-  #gene_snp_df <- gene_df |>
-    #arrange(chromosome_name) |>
-    #mutate(count=n_gene_All)
-  #gene_snp_df_0 <- gene_snp_df |> 
-    #filter(count!=0)
-  #ngene <- unique(gene_snp_df_0$ensembl_gene_id)
-  #return(list(gene_df=gene_snp_df, gene_df_0=gene_snp_df_0,gene_lst=ngene))
-  return(n_gene)
+ 
+  return(list(n_gene_chr=n_gene, GG_snp_chr = GG_snpsCHR))
 }
 
 
@@ -252,3 +248,4 @@ gene_map <- function(gene_df,snp_lst, chr_lst){
 
 
  
+
