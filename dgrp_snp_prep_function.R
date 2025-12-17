@@ -208,8 +208,8 @@ snp_map <- function(gene_df, snp_df, chr_lst){
     
   }
   tot <- lapply(Go_fd, function(x) sapply(x, function(y) y$snp))
-  funct_snp <- unlist(c(tot[[1]], tot[[2]],tot[[3]], tot[[4]], tot[[5]]))
-  return(funct_snp)
+  #funct_snp <- unlist(c(tot[[1]], tot[[2]],tot[[3]], tot[[4]], tot[[5]]))
+  return(tot)
 }
 
 
@@ -233,16 +233,18 @@ gene_map <- function(gene_df,snp_lst, chr_lst){
     GG_snpsCHR[[j]] <- GG_chr2
   }
   n_gene <- lapply(GG_snpsCHR, function(x) sapply(x, nrow)) 
-  n_gene_All <- c(n_gene[[1]], n_gene[[2]], n_gene[[3]], n_gene[[4]], n_gene[[5]], 
-                  n_gene[[6]]) 
-  gene_snp_df <- gene_df |>
-    arrange(chromosome_name) |>
-    mutate(count=n_gene_All)
-  gene_snp_df_0 <- gene_snp_df |> 
-    filter(count!=0)
-  ngene <- unique(gene_snp_df_0$ensembl_gene_id)
-  return(list(gene_df=gene_snp_df, gene_df_0=gene_snp_df_0,gene_lst=ngene))
+  #n_gene_All <- c(n_gene[[1]], n_gene[[2]], n_gene[[3]], n_gene[[4]], n_gene[[5]], 
+                  #n_gene[[6]]) 
+  #gene_snp_df <- gene_df |>
+    #arrange(chromosome_name) |>
+    #mutate(count=n_gene_All)
+  #gene_snp_df_0 <- gene_snp_df |> 
+    #filter(count!=0)
+  #ngene <- unique(gene_snp_df_0$ensembl_gene_id)
+  #return(list(gene_df=gene_snp_df, gene_df_0=gene_snp_df_0,gene_lst=ngene))
+  return(n_gene)
 }
+
 
 
 
