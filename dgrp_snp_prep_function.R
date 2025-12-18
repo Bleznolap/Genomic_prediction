@@ -210,13 +210,17 @@ snp_map <- function(gene_df, snp_df, chr_lst){
     Go_fd_0[[j]] <- base::Filter(function(x) nrow(x)>0, GG_chr)
     
   }
+  ## list of SNP ID for each gene per chromosome
   tot <- lapply(Go_fd, function(x) sapply(x, function(y) y$snp))
+   ## list of SNP ID for each gene per chromosome, excluding genes with 0 SNPs
   tot_0 <- lapply(Go_fd_0, function(x) sapply(x, function(y) y$snp))
                                               
+  ## unlisted SNP ID for each gene per chromosome                                       
   n_gene <- list()
     for(i in seq_along(tot)){n_gene[[i]] = tot[[i]]}
   snpid <- unique(unlist(n_gene))
-              
+
+  ## unlisted SNP ID for each gene per chromosome, excluding genes with 0 SNPs
   n_gene_0 <- list()
     for(i in seq_along(tot_0)){n_gene_0[[i]] = tot_0[[i]]}
   snpid_0 <- unique(unlist(n_gene_0))
@@ -243,9 +247,12 @@ gene_map <- function(gene_df,snp_lst, chr_lst){
     }
     GG_snpsCHR[[j]] <- GG_chr2
   }
+  ## list of count of genes for each SNP per chromosome 
   n_gene <- lapply(GG_snpsCHR, function(x) sapply(x, nrow)) 
-                   
+  ## list of gene ID for each SNP per chromosome       
   cbn <- lapply(GG_snpsCHR, function(x) sapply(x, function(y) y$ensembl_gene_id))
+
+  ## unlisted of gene ID for each SNP per chromosome 
   n_snp <- list()
     for(i in seq_along(cbn)){n_snp[[i]] <- cbn[[i]]}
   geneid <- unique(unlist(n_snp))
@@ -257,6 +264,7 @@ gene_map <- function(gene_df,snp_lst, chr_lst){
 
 
  
+
 
 
 
