@@ -26,6 +26,7 @@ version
 ## Function to compute GRM
 GRM <- function(x){x1 <- as.matrix(x); p0 <- colMeans(x1)/2; maf <- pmin(p0,1-p0) >0.05; gen <- x1[,maf]; p1 <- colMeans(gen)/2; z0 <- sweep(gen, 2, 2*p1)/sqrt(sum(4*p1*(1-p1))); G0 <- tcrossprod(z0); return(list(GRM=G0, freq=p1, zmat=z0, freg0=p0))}
 
+GRM_VR <- function(x){x1 <- as.matrix(x); p0 <- colMeans(x1)/2; maf <- pmin(p0,1-p0) >0.05; gen <- x1[,maf]; p1 <- colMeans(gen)/2; z0 <- sweep(gen, 2, 2*p1)/sqrt(sum(2*p1*(1-p1))); G0 <- tcrossprod(z0); return(list(GRM=G0, freq=p1, zmat=z0, freg0=p0))}
 ## Function to compute marker effects and their variances
 Ghat <- function(pheno, gp, zm){
   Vinve <- gp$W%*%(pheno-gp$fitted);
@@ -221,7 +222,6 @@ snp_map <- function(gene_df, snp_df, chr_lst){
 ##########################################################
 
 ## output: an unlisted gene ID per SNP per chromosome
-
 gene_map <- function(gene_df,snp_lst, chr_lst){
   GG_snpsCHR <- list()
   GG_snpsCHR_0 <- list()
@@ -248,4 +248,5 @@ gene_map <- function(gene_df,snp_lst, chr_lst){
 
 
  
+
 
