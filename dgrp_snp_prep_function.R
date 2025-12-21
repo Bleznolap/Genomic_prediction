@@ -195,7 +195,7 @@ return(list(pcs=GG_pcs, var=GG_var))
 
 ## output: an unlisted SNP ID per gene per chromosome
 
-snp_map <- function(gene_df, snp_df, chr_lst){
+snp_map <- function(gene_df, snp_df, chr_lst,ext){
   Go_fd <- list()
   Go_fd_0 <- list()
   for(j in seq_along(chr_lst)){
@@ -203,8 +203,8 @@ snp_map <- function(gene_df, snp_df, chr_lst){
     snP <- snp_df %>% filter(chr==chr_lst[[j]])
     GG_chr <- list()
     for(i in 1:nrow(chR)){
-      GG_chr[[i]] <- snP[snP$pos>=chR$start_position[i] & 
-                           snP$pos<=chR$end_position[i],]
+      GG_chr[[i]] <- snP[snP$pos>=(chR$start_position[i]-ext) & 
+                           snP$pos<=(chR$end_position[i]+ext),]
     }
     Go_fd[[j]] <- GG_chr
     Go_fd_0[[j]] <- base::Filter(function(x) nrow(x)>0, GG_chr)
@@ -233,7 +233,7 @@ snp_map <- function(gene_df, snp_df, chr_lst){
 ##########################################################
 
 ## output: an unlisted gene ID per SNP per chromosome
-gene_map <- function(gene_df,snp_lst, chr_lst){
+gene_map <- function(gene_df,snp_lst, chr_lst,ext){
   GG_snpsCHR <- list()
   GG_snpsCHR_0 <- list()
   for(j in seq_along(chr_lst)){
@@ -243,7 +243,7 @@ gene_map <- function(gene_df,snp_lst, chr_lst){
       filter(chr==chr_lst[[j]])
     GG_chr2 <- list()
     for(i in 1:nrow(snP)){
-      GG_chr2[[i]] <- chR[chR$start_position<=snP$pos[i] & chR$end_position>=snP$pos[i],]
+      GG_chr2[[i]] <- chR[(chR$start_position-ext)<=snP$pos[i] & (chR$end_position+ext)>=snP$pos[i],]
     }
     GG_snpsCHR[[j]] <- GG_chr2
   }
@@ -264,6 +264,7 @@ gene_map <- function(gene_df,snp_lst, chr_lst){
 
 
  
+
 
 
 
