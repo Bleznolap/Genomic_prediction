@@ -224,8 +224,14 @@ snp_map <- function(gene_df, snp_df, chr_lst,ext){
   n_gene_0 <- list()
     for(i in seq_along(tot_0)){n_gene_0[[i]] = tot_0[[i]]}
   snpid_0 <- unique(unlist(n_gene_0))
+
+  ## unlisted SNP count
+  n_snp <- lapply(Go_fd, function(x) sapply(x, nrow))
+  n_snp2 <- list()
+  for(i in seq_along(n_snp)){n_snp2[[i]] <- n_snp[[i]]}
+  n_snp3 <- unlist(n_snp2)
                                            
-  return(list(tot_chr=tot,tot_chr_0=tot_0, Go_chr=Go_fd, Go_chr_0=Go_fd_0, snp_id = snpid, snp_id_0 = snpid_0))
+  return(list(tot_chr=tot,tot_chr_0=tot_0, Go_chr=Go_fd, Go_chr_0=Go_fd_0, snp_id = snpid, snp_id_0 = snpid_0, snp_count = n_snp3))
 }
               
 ##########################################################
@@ -256,14 +262,20 @@ gene_map <- function(gene_df,snp_lst, chr_lst,ext){
   n_snp <- list()
     for(i in seq_along(cbn)){n_snp[[i]] <- cbn[[i]]}
   geneid <- unique(unlist(n_snp))
+
+   ## unlisted gene count
+  n_gene2 <- list()
+  for(i in seq_along(n_gene)){n_gene2[[i]] <- n_gene[[i]]}
+  n_gene3 <- unlist(n_gene2)
                                                
-  return(list(n_gene_chr=n_gene, GG_snp_chr = GG_snpsCHR,gene_id=geneid))
+  return(list(n_gene_chr=n_gene3, GG_snp_chr = GG_snpsCHR,gene_id=geneid))
 }
 
 
 
 
  
+
 
 
 
